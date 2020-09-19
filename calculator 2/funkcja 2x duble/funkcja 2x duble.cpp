@@ -21,7 +21,6 @@ double oblicz_dodawanie();
 double oblicz_odejmowanie();
 long oblicz_silnie();
 void nie_ma_takiej_opcji();
-bool is_integer(float liczba);
 void wypisz_wynik(double wynik);
 void main_loop();
 void press_key_to_continue();
@@ -40,11 +39,6 @@ void main_loop() {
 		press_key_to_continue();
 		system("cls");
 	}
-}
-
-bool is_integer(float liczba)
-{
-	return std::floor(liczba) == liczba;
 }
 
 char wybierz_opcje()
