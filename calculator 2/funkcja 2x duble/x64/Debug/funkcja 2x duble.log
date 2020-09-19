@@ -1,0 +1,4 @@
+﻿  funkcja 2x duble.cpp
+C:\Users\alicj\OneDrive\Desktop\projects\calculator 2\funkcja 2x duble\funkcja 2x duble.cpp(145,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\alicj\OneDrive\Desktop\projects\calculator 2\funkcja 2x duble\funkcja 2x duble.cpp(115): warning C4172: returning address of local variable or temporary: liczby
+  funkcja 2x duble.vcxproj -> C:\Users\alicj\OneDrive\Desktop\projects\calculator 2\x64\Debug\funkcja 2x duble.exe

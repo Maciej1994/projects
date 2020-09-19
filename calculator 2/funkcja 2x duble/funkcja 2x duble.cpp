@@ -1,120 +1,169 @@
 ﻿#include <iostream>
 #include <conio.h>
+
 using namespace std;
 
+//nie robimy zmiennych globalnych jeśli to nie jest konieczne. nie nazywamy ich z. co znaczy z?
 
+//dlaczego wszystkie funkcje to void? można zwracać wynik.
+//naywamy precyzyjnie funkcje. co znaczy wybierz? wybierz jajko, melona, vanisha?
 
+//jeśli nie używasz .h do deklaracji to deklrauj do góry pliku funkcje. nie polecam - do nauki
 
-char znak; //zmienna globalna
-double z = 0; //zmienna globalna
+//zainstaluj formater kodu.
 
-void wybierz()
-{
-    cout << " co chcesz zrobic? :";
-    cin >> znak;
-}
-
-double options(int count)
-{
-    
-    if (znak == '1' || znak == '2')
-    {
-
-        cout << "podaj " << count << " liczbe: " << endl;
-        double x = 0;
-        
-        while (!(cin >> x)) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "To nie jest liczba. Wpisz ponownie ";
-        }
-    
-        return x;
-
-    }
-  
-    else if (znak == '3')
-    {
-        cout << " podaj liczbe: ";
-        while (!(cin >> z)) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "To nie jest liczba. Wpisz ponownie ";
-        }
-    }
-
-    return z;
-}
-
-void menu()
-{
-    cout << " witamy" << endl;
-    cout << "MENU" << endl;
-    cout << "--------" << endl;
-    cout << "1.dodawanie" << endl;
-    cout << "2.odejmowanie" << endl;
-    cout << "3.silnia" << endl;
-    
-    cout << endl;
-}
-
-void dodawanie(double x, double y) {
-    cout << "wynik = " << x+y << endl;
-}
-
-void odejmowanie(double x, double y) {
-    cout << "wynik = " << x-y << endl;
-}
-
-void silnia(double z) {
-    long long silnia = 1;
-
-    for (int i = (int)z; i > 1; i--)
-    {
-        silnia *= (long long)i;
-    }
-
-    cout << (int)z << " ! " << "= " << silnia << endl;
-}
-
-
-void liczenie()
-{
-        double x = options(1);
-        double y = options(2);
-        
-    switch (znak)
-    {
-    case '1': {
-        dodawanie(x,y); break;
-    }
-    case '2':
-    {
-        odejmowanie(x,y); break;
-    }
-    case '3': {
-        silnia(z); break;
-    }
-    default: {
-        cout << " nie ma takiej opcji" << endl;
-    }
-
-    }
-}
-
-
-
+char wybierz_opcje();
+double podaj_liczbe(int index);
+void wybor();
+double* podaj_2liczby();
+void menu();
+double oblicz_dodawanie();
+double oblicz_odejmowanie();
+long oblicz_silnie();
+void nie_ma_takiej_opcji();
+bool is_integer(float liczba);
+void wypisz_wynik(double wynik);
+void main_loop();
+void press_key_to_continue();
+void exit();
 
 int main()
 {
-    for (;;)
-    {
+	main_loop();
+}
 
-        menu();
-        wybierz();
-        liczenie();
-        getchar(); getchar();
-        system("cls");
-    }
-    return 0;
+void main_loop() {
+	while (true)
+	{
+		menu();
+		wybor();
+		press_key_to_continue();
+		system("cls");
+	}
+}
+
+bool is_integer(float liczba)
+{
+	return std::floor(liczba) == liczba;
+}
+
+char wybierz_opcje()
+{
+	char wybor;
+	cout << "Co chcesz zrobic?: ";
+	cin >> wybor;
+	return wybor;
+}
+
+double podaj_liczbe(int index) {
+	double x;
+
+	if (index == 1 || index == 2) {
+		cout << "Podaj " << index << "." << " liczbe" << endl;
+	}
+	else cout << "Podaj liczbe " << endl;
+
+	while (!(cin >> x)) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "To nie jest liczba. Wpisz ponownie ";
+	}
+	return x;
+}
+
+//albo po polsku albo po angielsku. lepiej po angielsku.
+void wybor()
+{
+	char wybor = wybierz_opcje();
+	double wynik = 0;
+
+	switch (wybor) {
+	case '1':
+	{
+		wynik = oblicz_dodawanie();
+		break;
+	}
+	case '2':
+	{
+		wynik = oblicz_odejmowanie();
+		break;
+	}
+	case '3':
+	{
+		wynik = oblicz_silnie();
+		break;
+	}
+	case 'q':
+	{
+		exit();
+		break;
+	}
+	default:
+	{
+		nie_ma_takiej_opcji();
+		break;
+	}
+	}
+
+	wypisz_wynik(wynik);
+}
+double* podaj_2liczby() {
+	double liczby[2];
+	liczby[0] = podaj_liczbe(1);
+	liczby[1] = podaj_liczbe(2);
+
+	return liczby;
+}
+
+//to jest okej
+void menu()
+{
+	cout << "MENU" << endl;
+	cout << "--------" << endl;
+	cout << "1--->dodawanie" << endl;
+	cout << "2--->odejmowanie" << endl;
+	cout << "3--->silnia" << endl;
+	cout << "q--->wyjscie" << endl;
+
+	cout << endl;
+}
+//funkcja ma robić jedną rzecz a nie liczyć, wypisywać i pytać o liczby.
+
+double oblicz_dodawanie() {
+	double* liczby = podaj_2liczby();
+	double wynik = liczby[0] + liczby[1];
+	return wynik;
+}
+
+double oblicz_odejmowanie() {
+	double* liczby = podaj_2liczby();
+	double wynik = liczby[0] - liczby[1];
+	return wynik;
+}
+
+long oblicz_silnie() {
+	float liczba = podaj_liczbe(0);
+	long silnia = 1;
+
+	for (int i = (int)liczba; i > 1; i--)
+	{
+		silnia *= (int)i;
+	}
+	return silnia;
+}
+void wypisz_wynik(double wynik) {
+	cout << "Wynik to: " << wynik << endl;
+}
+
+void nie_ma_takiej_opcji() {
+	cout << "Nie ma takiej opcji" << endl;
+}
+
+void press_key_to_continue() {
+	cout << "Press any key to continue...";
+	_getch();
+}
+void exit() {
+	cout << "Bye bye!" << endl;
+	exit(0);
 }
