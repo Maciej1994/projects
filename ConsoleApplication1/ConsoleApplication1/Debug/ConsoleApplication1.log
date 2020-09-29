@@ -1,0 +1,5 @@
+﻿  ConsoleApplication1.cpp
+C:\Users\criti\Desktop\Visual\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(102,23): warning C4244: "=": konwersja z "__int64" do "double", możliwa utrata danych
+C:\Users\criti\Desktop\Visual\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(167,18): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\criti\Desktop\Visual\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(137): warning C4172: zwracanie adresu lokalnej zmiennej lub tymczasowej: liczby
+  ConsoleApplication1.vcxproj -> C:\Users\criti\Desktop\Visual\ConsoleApplication1\Debug\ConsoleApplication1.exe
