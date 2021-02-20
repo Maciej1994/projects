@@ -212,5 +212,5 @@ void wypisz_wynik(double wynik)
 void kontynuuj()
 {
     cout << "nacisnij enter " << endl;
-    getchar(); getchar();
+    _getch();
 }
